@@ -30,8 +30,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ## 自定义组件
 ``` 
 # 接口调用请参考src/api/test
+# 接口使用方式请参考HelloWorld
 
-#打包不同路径文件的配置请到config/vuex/state/api 新建文件
+#打包不同路径文件的配置请到config/vuex/state/api 新建文件并在api.js内导入路径
 打包方式 列：npm run build -- 0.56
 
 #element组件 使用请到config/element添加相应的组件
