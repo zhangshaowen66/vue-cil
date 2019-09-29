@@ -3,10 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import element from './config/element'
 import store from './config/vuex'
-Vue.use(element);
-import 'element-ui/lib/theme-chalk/index.css';
+import Vant from 'vant';
+import 'vant/lib/index.css';
+
+Vue.use(Vant);
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
