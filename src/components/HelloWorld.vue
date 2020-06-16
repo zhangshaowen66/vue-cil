@@ -56,10 +56,6 @@ export default {
       if (scrollTop <= this.$refs['scrollUl'][0].clientHeight) {
         this.mun = 0
       }
-      //变量scrollTop是滚动条滚动时，距离顶部的距离
-      console.log(scrollTop, 'scrollTopscrollTop')
-
-
     }
   },
   data () {
