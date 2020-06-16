@@ -44,7 +44,6 @@ export default {
 
     scroll.onscroll = ()=>{
       let addHeight = 0
-      console.log(this.$refs.scrollUl.length, '111222333');
       var scrollTop = scroll.scrollTop;
       for (var i = 0; i < this.$refs.scrollUl.length; i++) {
         console.log(this.$refs['scrollUl'][i].clientHeight, i, '总高度');
@@ -58,10 +57,8 @@ export default {
         this.mun = 0
       }
       //变量scrollTop是滚动条滚动时，距离顶部的距离
-
       console.log(scrollTop, 'scrollTopscrollTop')
-      //变量windowHeight是可视区的高度
-      var windowHeight = scroll.clientHeight
+
 
     }
   },
