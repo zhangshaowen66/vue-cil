@@ -2,10 +2,20 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
-    <van-button type="default">默认按钮</van-button>
+    <el-button @click="testDis()">默认按钮</el-button>
     <scroll  :scrolls="scrolls()"></scroll>
     <div class="h-5">
-
+    </div>
+    <h1>{{mun}}</h1>
+    <div class="scrollTitle">{{listData[mun].title}}</div>
+    <div class="scroll" id="scroll">
+      <ul v-for="(item,index) in listData" :key="index" ref="scrollUl">
+        <li class="title" v-if="index !== 0">{{item.title}}</li>
+        <li v-for="(cont,dex) in item.xq" class="content">
+          <span>{{cont.title}}</span>
+          <span>{{cont.content}}</span>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -17,16 +27,305 @@
   import scroll from '../components/scroll.vue'
 export default {
   name: 'HelloWorld',
+  updated () {
+    console.log('数据更新')
+  },
   mounted () {
+    this.$store.state.account.tilte = 1
+    console.log(this.$store.state.account.tilte, 'tiltetilte')
     let anys = []
     let  a  = ['1', '2' , '3']
     anys.push(...a)
+    // this.axios.call(this, 'aaaa/aa', {a: 1})
     console.log(anys, 'push');
     console.log([...'123.321'], 'string');
+
+    let scroll = document.getElementById('scroll')
+
+    scroll.onscroll = ()=>{
+      let addHeight = 0
+      console.log(this.$refs.scrollUl.length, '111222333');
+      var scrollTop = scroll.scrollTop;
+      for (var i = 0; i < this.$refs.scrollUl.length; i++) {
+        console.log(this.$refs['scrollUl'][i].clientHeight, i, '总高度');
+        addHeight+=this.$refs['scrollUl'][i].clientHeight
+        console.log(addHeight, i, '叠加总高度')
+        if (scrollTop >= addHeight) {
+          this.mun = i + 1
+        }
+      }
+      if (scrollTop <= this.$refs['scrollUl'][0].clientHeight) {
+        this.mun = 0
+      }
+      //变量scrollTop是滚动条滚动时，距离顶部的距离
+
+      console.log(scrollTop, 'scrollTopscrollTop')
+      //变量windowHeight是可视区的高度
+      var windowHeight = scroll.clientHeight
+
+    }
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      mun: 0,
+      listData: [
+        {
+          title: 2020,
+          xq: [
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2020年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2020年3月2日 10:30:50'
+            },{
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2020年3月2日 10:30:50'
+            }
+          ]
+        },
+        {
+          title: 2019,
+          xq: [
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2019年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2019年3月2日 10:30:50'
+            }
+          ]
+        },
+        {
+          title: 2018,
+          xq: [
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2018年3月2日 10:30:50'
+            },
+          ]
+        },
+        {
+          title: 2017,
+          xq: [
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+          ]
+        },
+        {
+          title: 2016,
+          xq: [
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+          ]
+        },
+        {
+          title: 2015,
+          xq: [
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+          ]
+        },
+        {
+          title: 2014,
+          xq: [
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+          ]
+        },
+        {
+          title: 2013,
+          xq: [
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+          ]
+        },
+        {
+          title: 2012,
+          xq: [
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+            {
+              title: '急救中心',
+              content: '嗷嗷嗷啊',
+              time: '2017年3月2日 10:30:50'
+            },
+          ]
+        }
+      ],
+      test: 1
     }
   },
   methods: {
@@ -80,6 +379,19 @@ export default {
             }
           }
         )
+    },
+    testDis () {
+      this.$store.dispatch('testDis', {
+        code: 1,
+        title: '张三'
+      },
+      callback => {
+        console.log('成功调用')
+      },
+        fallback => {
+        console.log('失败调用')
+        }
+      )
     }
   },
   components:{
@@ -96,15 +408,33 @@ h1, h2 {
 ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 li {
-  display: inline-block;
-  margin: 0 10px;
+
 }
 a {
   color: #42b983;
 }
-  .h-5{
-    height: 800px;
+ .scroll{
+   height: 500px;
+   width: 600px;
+   overflow: auto;
+ }
+ .scroll ul li{
+   height: 40px;
+   line-height: 40px;
+ }
+  .content{
+    border-bottom: 1px solid #000;
+  }
+  .title{
+    background: #ccc;
+  }
+  .scrollTitle{
+    background: #ccc;
+    width: 600px;
+    height: 40px;
+    line-height: 40px;
   }
 </style>

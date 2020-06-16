@@ -1,6 +1,7 @@
 import axios from 'axios'
 const API = require('@/config/vuex/state/api').state
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'; // Form Data 模式
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'; // Form Data 模式
+ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 //定义fetch函数，config为配置
 export function fetch(config,base){
   //返回promise对象

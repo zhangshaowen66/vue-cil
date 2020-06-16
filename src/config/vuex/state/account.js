@@ -1,3 +1,4 @@
+import disp from '@/api/disp'
 export default {
   state: {
     signedIn: false,
@@ -5,12 +6,16 @@ export default {
     nick: undefined,
     uid: undefined,
     username: undefined,
-    tilte: undefined
+    tilte: '头部'
   },
   mutations: {
     _setTilte (state, aug) {
       state.tilte = aug
     }
   },
-  action: {}
+  action: {
+    testDis () {
+      disp.call(this, arguments)
+    }
+  }
 }
