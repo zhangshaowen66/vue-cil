@@ -18,7 +18,7 @@
             //变量scrollHeight是滚动条的总高度
             var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
             //滚动条到底部的条件
-            if(scrollTop+windowHeight===scrollHeight){
+            if(scrollTop+windowHeight ===scrollHeight){
               /*if (_this.total !== _this.list.length) {
                   currentPage =  currentPage + 1
                   this.$emit('currentPage',currentPage)

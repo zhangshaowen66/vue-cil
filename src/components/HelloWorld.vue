@@ -25,23 +25,15 @@
   import getTest from '../../src/api/getTest'
   import otherTest from '../../src/api/otherTest'
   import scroll from '../components/scroll.vue'
+  import util from '../config/util'
+  import {funs} from '../config/exportTest'
 export default {
   name: 'HelloWorld',
   updated () {
     console.log('数据更新')
   },
   mounted () {
-    this.$store.state.account.tilte = 1
-    console.log(this.$store.state.account.tilte, 'tiltetilte')
-    let anys = []
-    let  a  = ['1', '2' , '3']
-    anys.push(...a)
-    // this.axios.call(this, 'aaaa/aa', {a: 1})
-    console.log(anys, 'push');
-    console.log([...'123.321'], 'string');
-
     let scroll = document.getElementById('scroll')
-
     scroll.onscroll = ()=>{
       let addHeight = 0
       var scrollTop = scroll.scrollTop;
@@ -415,8 +407,7 @@ a {
    overflow: auto;
  }
  .scroll ul li{
-   height: 40px;
-   line-height: 40px;
+   padding: 10px;
  }
   .content{
     border-bottom: 1px solid #000;
@@ -427,7 +418,6 @@ a {
   .scrollTitle{
     background: #ccc;
     width: 600px;
-    height: 40px;
-    line-height: 40px;
+    padding: 10px;
   }
 </style>
