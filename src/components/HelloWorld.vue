@@ -7,6 +7,7 @@
     <div class="h-5">
     </div>
     <h1>{{mun}}</h1>
+    <VueAudio :theUrl="require('../../static/falling-star.mp3')" :theControlList="'onlyOnePlaying'"></VueAudio>
     <div class="scrollTitle">{{listData[mun].title}}</div>
     <div class="scroll" id="scroll">
       <ul v-for="(item,index) in listData" :key="index" ref="scrollUl">
@@ -25,22 +26,20 @@
   import getTest from '../../src/api/getTest'
   import otherTest from '../../src/api/otherTest'
   import scroll from '../components/scroll.vue'
+  import VueAudio from '../components/VueAudio.vue'
   import util from '../config/util'
   import {funs} from '../config/exportTest'
 export default {
   name: 'HelloWorld',
-  updated () {
-    console.log('数据更新')
-  },
   mounted () {
     let scroll = document.getElementById('scroll')
     scroll.onscroll = ()=>{
       let addHeight = 0
       var scrollTop = scroll.scrollTop;
       for (var i = 0; i < this.$refs.scrollUl.length; i++) {
-        console.log(this.$refs['scrollUl'][i].clientHeight, i, '总高度');
+       // console.log(this.$refs['scrollUl'][i].clientHeight, i, '总高度');
         addHeight+=this.$refs['scrollUl'][i].clientHeight
-        console.log(addHeight, i, '叠加总高度')
+       // console.log(addHeight, i, '叠加总高度')
         if (scrollTop >= addHeight) {
           this.mun = i + 1
         }
@@ -315,7 +314,7 @@ export default {
   },
   methods: {
     scrolls () {
-      console.log('这是上啦刷新的方法')
+      // console.log('这是上啦刷新的方法')
     },
     testFunc(x, y, z) {
       console.log(x, y, z);
@@ -380,7 +379,8 @@ export default {
     }
   },
   components:{
-    scroll
+    scroll,
+    VueAudio
   }
 }
 </script>

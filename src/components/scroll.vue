@@ -8,7 +8,7 @@
       // scrolls 父级页面传回来的方法  // total 总的数量条数  // list 列表 // currentPage回调给父级页面的页码
         props: ['scrolls','total','list'],
         mounted() {
-          this.scrolls
+      //    this.scrolls
           let currentPage = 1
           window.onscroll = function(){
             //变量scrollTop是滚动条滚动时，距离顶部的距离

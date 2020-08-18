@@ -4,11 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './config/vuex'
-import elements from './config/element'
+import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 import "babel-polyfill"
 import { $axios } from './config/axios'
-Vue.use(elements)
+Vue.use(ElementUI)
 Vue.config.productionTip = false
 
 Vue.prototype.axios = function (url, obj, type, host) {
