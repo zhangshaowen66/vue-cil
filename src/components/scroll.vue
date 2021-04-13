@@ -4,9 +4,11 @@
 </template>
 
 <script>
+
     export default {
       // scrolls 父级页面传回来的方法  // total 总的数量条数  // list 列表 // currentPage回调给父级页面的页码
         props: ['scrolls','total','list'],
+
         mounted() {
       //    this.scrolls
           let currentPage = 1

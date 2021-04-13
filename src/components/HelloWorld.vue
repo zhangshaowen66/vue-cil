@@ -1,27 +1,30 @@
 <template>
   <div class="hello">
+    {{arr}}
+    <button @click="but()">改变</button>
+    <p>{{signedIn}} 123</p>
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
+    <h2>Essential Links 111233</h2>
     <el-button @click="testDis()">默认按钮</el-button>
     <scroll  :scrolls="scrolls()"></scroll>
     <div class="h-5">
     </div>
+    <childrens :digui="digui"></childrens>
     <h1>{{mun}}</h1>
     <VueAudio :theUrl="require('../../static/falling-star.mp3')" :theControlList="'onlyOnePlaying'"></VueAudio>
     <div class="scrollTitle">{{listData[mun].title}}</div>
     <div class="scroll" id="scroll">
-      <ul v-for="(item,index) in listData" :key="index" ref="scrollUl">
-        <li class="title" v-if="index !== 0">{{item.title}}</li>
-        <li v-for="(cont,dex) in item.xq" class="content">
-          <span>{{cont.title}}</span>
-          <span>{{cont.content}}</span>
-        </li>
-      </ul>
+      <ul v-for="(item,index) in listData" :key="index" ref="scrollUl"> </ul>
     </div>
+
+    <video id="videoElement" style="width: 500px; height:350px; " controls ></video>
+    <p @click="play()">播放</p>
+    <p>暂停</p>
   </div>
 </template>
 
 <script>
+  import {mapState,mapMutations} from 'vuex'
   import test from '../../src/api/test'
   import getTest from '../../src/api/getTest'
   import otherTest from '../../src/api/otherTest'
@@ -29,9 +32,28 @@
   import VueAudio from '../components/VueAudio.vue'
   import util from '../config/util'
   import {funs} from '../config/exportTest'
+  import flvjs from 'flv.js/dist/flv.min.js'
+  import childrens from "./childrens.vue"
 export default {
   name: 'HelloWorld',
   mounted () {
+    this.$nextTick(()=>{
+      if (flvjs.isSupported()) {
+        console.log('123')
+        var videoElement = document.getElementById('videoElement')
+        this.flvPlayer = flvjs.createPlayer({
+          type:  'flv',
+          url: `http://120.77.209.131:9090/live/282C0280297E.flv`
+        })
+        this.flvPlayer.attachMediaElement(videoElement)
+        this.flvPlayer.load()
+        this.flvPlayer.play()
+      }
+    })
+
+
+
+
     let scroll = document.getElementById('scroll')
     scroll.onscroll = ()=>{
       let addHeight = 0
@@ -49,8 +71,15 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState({
+      signedIn: (state) =>　state.account.tilte
+    }),
+
+  },
   data () {
     return {
+      flvPlayer:null,
       msg: 'Welcome to Your Vue.js App',
       mun: 0,
       listData: [
@@ -309,10 +338,43 @@ export default {
           ]
         }
       ],
-      test: 1
+      digui: [
+        {
+          name: '张三',
+          text: 123,
+          children: [
+            {
+              name: '张三1',
+              text: 222,
+              children: [
+                {
+                  name: '张三2',
+                  text: 333,
+                  children: [
+                    {
+                      name: '张三3',
+                      text: 444,
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      arr: [1,2,3],
     }
   },
   methods: {
+    but () {
+      this.arr[0] = 222
+    },
+    play(){
+      this.flvPlayer.play();
+    },
+    pause(){
+      this.flvPlayer.pause();
+    },
     scrolls () {
       // console.log('这是上啦刷新的方法')
     },
@@ -380,7 +442,8 @@ export default {
   },
   components:{
     scroll,
-    VueAudio
+    VueAudio,
+    childrens
   }
 }
 </script>
